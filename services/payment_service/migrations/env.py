@@ -1,11 +1,14 @@
 from logging.config import fileConfig
 
 from alembic import context
-from sqlalchemy import engine_from_config, pool
+from sqlalchemy import (
+    engine_from_config,
+    pool,
+)
 
-from services.order_service.config import settings
-from services.order_service.db import Base
-from services.order_service import models
+from services.payment_service.config import settings
+from services.payment_service.db import Base
+from services.payment_service import models
 
 
 config = context.config
@@ -17,26 +20,21 @@ config.set_main_option(
 
 
 if config.config_file_name is not None:
-    fileConfig(config.config_file_name)
+    fileConfig(
+        config.config_file_name
+    )
 
 
 target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:
-    url = config.get_main_option(
-        "sqlalchemy.url"
-    )
-
     context.configure(
-        url=url,
+        url=settings.database_url,
         target_metadata=target_metadata,
         literal_binds=True,
-        dialect_opts={
-            "paramstyle": "named",
-        },
         include_schemas=True,
-        version_table="order_service_alembic_version",
+        version_table="payment_service_alembic_version",
     )
 
     with context.begin_transaction():
@@ -58,7 +56,7 @@ def run_migrations_online() -> None:
             connection=connection,
             target_metadata=target_metadata,
             include_schemas=True,
-            version_table="order_service_alembic_version",
+            version_table="payment_service_alembic_version",
         )
 
         with context.begin_transaction():

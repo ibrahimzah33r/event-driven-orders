@@ -1,6 +1,10 @@
 import json
+from collections.abc import Callable
 
 from confluent_kafka import Consumer, KafkaError
+
+
+EventHandler = Callable[[dict], None]
 
 
 class KafkaConsumer:
@@ -21,7 +25,10 @@ class KafkaConsumer:
     def subscribe(self, topic: str) -> None:
         self.consumer.subscribe([topic])
 
-    def run(self) -> None:
+    def run(
+        self,
+        handler: EventHandler | None = None,
+    ) -> None:
         try:
             while True:
                 message = self.consumer.poll(1.0)
@@ -30,10 +37,15 @@ class KafkaConsumer:
                     continue
 
                 if message.error():
-                    if message.error().code() == KafkaError._PARTITION_EOF:
+                    if (
+                        message.error().code()
+                        == KafkaError._PARTITION_EOF
+                    ):
                         continue
 
-                    raise RuntimeError(message.error())
+                    raise RuntimeError(
+                        message.error()
+                    )
 
                 event = json.loads(
                     message.value().decode("utf-8")
@@ -46,7 +58,15 @@ class KafkaConsumer:
                     f"offset={message.offset()}"
                 )
 
-                print(json.dumps(event, indent=2))
+                if handler is None:
+                    print(
+                        json.dumps(
+                            event,
+                            indent=2,
+                        )
+                    )
+                else:
+                    handler(event)
 
                 self.consumer.commit(
                     message=message,

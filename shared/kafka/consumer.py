@@ -22,8 +22,14 @@ class KafkaConsumer:
             }
         )
 
-    def subscribe(self, topic: str) -> None:
-        self.consumer.subscribe([topic])
+    def subscribe(
+        self,
+        topics: str | list[str],
+    ) -> None:
+        if isinstance(topics, str):
+            topics = [topics]
+
+        self.consumer.subscribe(topics)
 
     def run(
         self,

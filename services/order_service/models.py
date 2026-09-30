@@ -1,14 +1,24 @@
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import DateTime, Integer, Numeric, String, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import (
+    DateTime,
+    Integer,
+    Numeric,
+    String,
+    func,
+)
+from sqlalchemy.orm import (
+    Mapped,
+    mapped_column,
+)
 
 from services.order_service.db import Base
 
 
 class Order(Base):
     __tablename__ = "orders"
+
     __table_args__ = {
         "schema": "order_service",
     }
@@ -34,6 +44,20 @@ class Order(Base):
         nullable=False,
         default="CREATED",
         server_default="CREATED",
+    )
+
+    payment_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="PENDING",
+        server_default="PENDING",
+    )
+
+    inventory_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="PENDING",
+        server_default="PENDING",
     )
 
     created_at: Mapped[datetime] = mapped_column(

@@ -23,4 +23,6 @@ class OrderRead(BaseModel):
     customer_id: int
     total: Decimal
     status: str
+    payment_status: str
+    inventory_status: str
     created_at: datetime

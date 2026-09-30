@@ -31,6 +31,7 @@ class KafkaConsumer:
 
         self.consumer.subscribe(topics)
 
+    
     def run(
         self,
         handler: EventHandler | None = None,
@@ -64,23 +65,40 @@ class KafkaConsumer:
                     f"offset={message.offset()}"
                 )
 
-                if handler is None:
-                    print(
-                        json.dumps(
-                            event,
-                            indent=2,
+                try:
+                    if handler is None:
+                        print(
+                            json.dumps(
+                                event,
+                                indent=2,
+                            )
                         )
+                    else:
+                        handler(event)
+
+                except Exception as exc:
+                    print(
+                        f"Event processing failed: {exc}"
                     )
-                else:
-                    handler(event)
+
+                    print(
+                        "Kafka offset NOT committed."
+                    )
+
+                    raise
 
                 self.consumer.commit(
                     message=message,
                     asynchronous=False,
                 )
 
+                print(
+                    f"Committed offset "
+                    f"{message.offset()}"
+                )
+
         except KeyboardInterrupt:
             print("\nConsumer stopped.")
 
         finally:
-            self.consumer.close()
+            self.consumer.close()  

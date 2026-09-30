@@ -4,7 +4,7 @@ from services.order_service.models import Order
 from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.producer import KafkaProducer
-
+from shared.kafka.dead_letter import DeadLetterPublisher
 
 consumer = KafkaConsumer(
     group_id="order-service-status",
@@ -16,6 +16,12 @@ producer = KafkaProducer(
     bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
+dead_letter = DeadLetterPublisher(
+    topic="order-service-status.dlq",
+    bootstrap_servers=(
+        settings.kafka_bootstrap_servers
+    ),
+)
 
 def handle_event(event: dict) -> None:
     event_type = event["event_type"]
@@ -100,5 +106,8 @@ if __name__ == "__main__":
     )
 
     consumer.run(
-        handler=handle_event
+        handler=handle_event,
+        on_failure=dead_letter.publish,
+        max_retries=3,
+        initial_backoff_seconds=1.0,
     )

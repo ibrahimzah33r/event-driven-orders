@@ -1,11 +1,14 @@
 import json
 from collections.abc import Callable
-
+import time
 from confluent_kafka import Consumer, KafkaError
 
 
 EventHandler = Callable[[dict], None]
-
+FailureHandler = Callable[
+    [dict, Exception, str, int, int],
+    None,
+]
 
 class KafkaConsumer:
     def __init__(
@@ -35,6 +38,9 @@ class KafkaConsumer:
     def run(
         self,
         handler: EventHandler | None = None,
+        on_failure: FailureHandler | None = None,
+        max_retries: int = 3,
+        initial_backoff_seconds: float = 1.0,
     ) -> None:
         try:
             while True:
@@ -65,27 +71,61 @@ class KafkaConsumer:
                     f"offset={message.offset()}"
                 )
 
-                try:
-                    if handler is None:
-                        print(
-                            json.dumps(
-                                event,
-                                indent=2,
+                attempt = 0
+
+                while True:
+                    try:
+                        if handler is None:
+                            print(
+                                json.dumps(
+                                    event,
+                                    indent=2,
+                                )
                             )
+                        else:
+                            handler(event)
+
+                        break
+
+                    except Exception as exc:
+                        if attempt >= max_retries:
+                            print(
+                                f"Processing failed after "
+                                f"{max_retries} retries: "
+                                f"{exc}"
+                            )
+
+                            if on_failure is None:
+                                raise
+
+                            on_failure(
+                                event,
+                                exc,
+                                message.topic(),
+                                message.partition(),
+                                message.offset(),
+                            )
+
+                            break
+
+                        delay = (
+                            initial_backoff_seconds
+                            * (2 ** attempt)
                         )
-                    else:
-                        handler(event)
 
-                except Exception as exc:
-                    print(
-                        f"Event processing failed: {exc}"
-                    )
+                        attempt += 1
 
-                    print(
-                        "Kafka offset NOT committed."
-                    )
+                        print(
+                            f"Processing failed: {exc}"
+                        )
 
-                    raise
+                        print(
+                            f"Retry {attempt}/"
+                            f"{max_retries} "
+                            f"in {delay:.1f}s"
+                        )
+
+                        time.sleep(delay)
 
                 self.consumer.commit(
                     message=message,
@@ -101,4 +141,4 @@ class KafkaConsumer:
             print("\nConsumer stopped.")
 
         finally:
-            self.consumer.close()  
+            self.consumer.close()

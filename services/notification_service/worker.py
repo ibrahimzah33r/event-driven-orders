@@ -8,13 +8,19 @@ from services.notification_service.models import (
     Notification,
 )
 from shared.kafka.consumer import KafkaConsumer
-
+from shared.kafka.dead_letter import DeadLetterPublisher
 
 consumer = KafkaConsumer(
     group_id="notification-service",
     bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
+dead_letter = DeadLetterPublisher(
+    topic="notification-service.dlq",
+    bootstrap_servers=(
+        settings.kafka_bootstrap_servers
+    ),
+)
 
 def handle_event(event: dict) -> None:
     if event["event_type"] != "order.confirmed":
@@ -51,5 +57,8 @@ if __name__ == "__main__":
     )
 
     consumer.run(
-        handler=handle_event
+        handler=handle_event,
+        on_failure=dead_letter.publish,
+        max_retries=3,
+        initial_backoff_seconds=1.0,
     )

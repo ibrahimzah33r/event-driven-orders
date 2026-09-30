@@ -4,7 +4,7 @@ from services.inventory_service.models import InventoryReservation
 from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.producer import KafkaProducer
-
+from shared.kafka.dead_letter import DeadLetterPublisher
 
 consumer = KafkaConsumer(
     group_id="inventory-service",
@@ -16,6 +16,12 @@ producer = KafkaProducer(
     bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
+dead_letter = DeadLetterPublisher(
+    topic="inventory-service.dlq",
+    bootstrap_servers=(
+        settings.kafka_bootstrap_servers
+    ),
+)
 
 def handle_event(event: dict) -> None:
     if event["event_type"] != "order.created":
@@ -65,5 +71,8 @@ if __name__ == "__main__":
     )
 
     consumer.run(
-        handler=handle_event
+        handler=handle_event,
+        on_failure=dead_letter.publish,
+        max_retries=3,
+        initial_backoff_seconds=1.0,
     )

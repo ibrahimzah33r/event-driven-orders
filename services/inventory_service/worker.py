@@ -1,0 +1,69 @@
+from services.inventory_service.config import settings
+from services.inventory_service.db import SessionLocal
+from services.inventory_service.models import InventoryReservation
+from shared.events.models import Event
+from shared.kafka.consumer import KafkaConsumer
+from shared.kafka.producer import KafkaProducer
+
+
+consumer = KafkaConsumer(
+    group_id="inventory-service",
+    bootstrap_servers=settings.kafka_bootstrap_servers,
+)
+
+
+producer = KafkaProducer(
+    bootstrap_servers=settings.kafka_bootstrap_servers,
+)
+
+
+def handle_event(event: dict) -> None:
+    if event["event_type"] != "order.created":
+        return
+
+    data = event["data"]
+
+    with SessionLocal() as db:
+        reservation = InventoryReservation(
+            order_id=data["order_id"],
+            status="RESERVED",
+        )
+
+        db.add(reservation)
+        db.commit()
+        db.refresh(reservation)
+
+        inventory_event = Event.create(
+            event_type="inventory.reserved",
+            data={
+                "reservation_id": reservation.id,
+                "order_id": reservation.order_id,
+                "status": reservation.status,
+            },
+        )
+
+        producer.publish(
+            topic=settings.inventory_events_topic,
+            event=inventory_event,
+            key=str(reservation.order_id),
+        )
+
+        print(
+            f"Inventory reserved for order "
+            f"{reservation.order_id}"
+        )
+
+
+if __name__ == "__main__":
+    consumer.subscribe(
+        settings.order_events_topic
+    )
+
+    print(
+        "Inventory Service listening "
+        "for order events..."
+    )
+
+    consumer.run(
+        handler=handle_event
+    )

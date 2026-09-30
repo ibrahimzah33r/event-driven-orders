@@ -1,14 +1,19 @@
 from services.order_service.config import settings
 from services.order_service.db import SyncSessionLocal
 from services.order_service.models import Order
+from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
+from shared.kafka.producer import KafkaProducer
 
 
 consumer = KafkaConsumer(
     group_id="order-service-status",
-    bootstrap_servers=(
-        settings.kafka_bootstrap_servers
-    ),
+    bootstrap_servers=settings.kafka_bootstrap_servers,
+)
+
+
+producer = KafkaProducer(
+    bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
 
@@ -42,6 +47,10 @@ def handle_event(event: dict) -> None:
         if event_type == "inventory.reserved":
             order.inventory_status = "RESERVED"
 
+        was_confirmed = (
+            order.status == "CONFIRMED"
+        )
+
         if (
             order.payment_status == "COMPLETED"
             and order.inventory_status == "RESERVED"
@@ -49,6 +58,25 @@ def handle_event(event: dict) -> None:
             order.status = "CONFIRMED"
 
         db.commit()
+
+        if (
+            order.status == "CONFIRMED"
+            and not was_confirmed
+        ):
+            confirmed_event = Event.create(
+                event_type="order.confirmed",
+                data={
+                    "order_id": order.id,
+                    "customer_id": order.customer_id,
+                    "total": str(order.total),
+                },
+            )
+
+            producer.publish(
+                topic="notifications.events",
+                event=confirmed_event,
+                key=str(order.id),
+            )
 
         print(
             f"Order {order.id}: "

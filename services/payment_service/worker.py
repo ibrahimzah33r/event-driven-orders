@@ -7,6 +7,9 @@ from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.producer import KafkaProducer
 from shared.kafka.dead_letter import DeadLetterPublisher
+from shared.events.order_events import (
+    parse_order_created,
+)
 
 consumer = KafkaConsumer(
     group_id="payment-service",
@@ -33,13 +36,30 @@ def handle_event(event: dict) -> None:
     if event["event_type"] != "order.created":
         return
 
-    data = event["data"]
+    order_event = parse_order_created(event)
+    order_id = order_event.order_id
 
     with SessionLocal() as db:
+        existing_payment = (
+            db.query(Payment)
+            .filter(
+                Payment.order_id == order_id
+            )
+            .first()
+        )
+
+        if existing_payment is not None:
+            print(
+                f"Duplicate order event ignored: "
+                f"payment already exists for "
+                f"order {order_id}"
+            )
+            return
+
         payment = Payment(
-            order_id=data["order_id"],
+            order_id=order_id,
             amount=Decimal(
-                str(data["total"])
+                str(order_event.total)
             ),
             status="COMPLETED",
         )
@@ -68,8 +88,7 @@ def handle_event(event: dict) -> None:
             f"Payment {payment.id} completed "
             f"for order {payment.order_id}"
         )
-
-
+        
 if __name__ == "__main__":
     consumer.subscribe(
         settings.order_events_topic

@@ -73,10 +73,12 @@ async def create_order(
 
     event = Event.create(
         event_type="order.created",
+        version=2,
         data={
             "order_id": order.id,
             "customer_id": order.customer_id,
             "total": str(order.total),
+            "currency": "GBP",
         },
     )
 

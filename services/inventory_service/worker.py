@@ -5,6 +5,7 @@ from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.producer import KafkaProducer
 from shared.kafka.dead_letter import DeadLetterPublisher
+from shared.events.order_events import parse_order_created
 
 consumer = KafkaConsumer(
     group_id="inventory-service",
@@ -27,11 +28,29 @@ def handle_event(event: dict) -> None:
     if event["event_type"] != "order.created":
         return
 
-    data = event["data"]
+    order_event = parse_order_created(event)
+    order_id = order_event.order_id
 
     with SessionLocal() as db:
+        existing_reservation = (
+            db.query(InventoryReservation)
+            .filter(
+                InventoryReservation.order_id
+                == order_id
+            )
+            .first()
+        )
+
+        if existing_reservation is not None:
+            print(
+                f"Duplicate order event ignored: "
+                f"inventory already reserved "
+                f"for order {order_id}"
+            )
+            return
+
         reservation = InventoryReservation(
-            order_id=data["order_id"],
+            order_id=order_id,
             status="RESERVED",
         )
 
@@ -55,10 +74,9 @@ def handle_event(event: dict) -> None:
         )
 
         print(
-            f"Inventory reserved for order "
-            f"{reservation.order_id}"
+            f"Inventory reserved for "
+            f"order {reservation.order_id}"
         )
-
 
 if __name__ == "__main__":
     consumer.subscribe(

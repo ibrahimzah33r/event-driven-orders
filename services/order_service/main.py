@@ -1,4 +1,3 @@
-import asyncio
 from typing import Annotated
 
 from fastapi import (
@@ -10,15 +9,16 @@ from fastapi import (
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from services.order_service.config import settings
 from services.order_service.db import get_db
-from services.order_service.models import Order
+from services.order_service.models import (
+    Order,
+    OutboxMessage,
+)
 from services.order_service.schemas import (
     OrderCreate,
     OrderRead,
 )
 from shared.events.models import Event
-from shared.kafka.producer import KafkaProducer
 
 
 app = FastAPI(
@@ -31,11 +31,6 @@ DatabaseSession = Annotated[
     AsyncSession,
     Depends(get_db),
 ]
-
-
-kafka_producer = KafkaProducer(
-    bootstrap_servers=settings.kafka_bootstrap_servers,
-)
 
 
 @app.get("/health")
@@ -68,8 +63,7 @@ async def create_order(
 
     db.add(order)
 
-    await db.commit()
-    await db.refresh(order)
+    await db.flush()
 
     event = Event.create(
         event_type="order.created",
@@ -82,12 +76,17 @@ async def create_order(
         },
     )
 
-    await asyncio.to_thread(
-        kafka_producer.publish,
-        "orders.events",
-        event,
-        str(order.id),
+    outbox_message = OutboxMessage(
+        event_id=event.event_id,
+        topic="orders.events",
+        event_key=str(order.id),
+        payload=event.to_dict(),
     )
+
+    db.add(outbox_message)
+
+    await db.commit()
+    await db.refresh(order)
 
     return order
 

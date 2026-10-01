@@ -2,6 +2,7 @@ from datetime import datetime
 from decimal import Decimal
 
 from sqlalchemy import (
+    JSON,
     DateTime,
     Integer,
     Numeric,
@@ -64,4 +65,52 @@ class Order(Base):
         DateTime(timezone=True),
         nullable=False,
         server_default=func.now(),
+    )
+
+
+class OutboxMessage(Base):
+    __tablename__ = "outbox_messages"
+
+    __table_args__ = {
+        "schema": "order_service",
+    }
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+    )
+
+    event_id: Mapped[str] = mapped_column(
+        String(36),
+        nullable=False,
+        unique=True,
+    )
+
+    topic: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+
+    event_key: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+
+    payload: Mapped[dict] = mapped_column(
+        JSON,
+        nullable=False,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        server_default=func.now(),
+    )
+
+    published_at: Mapped[
+        datetime | None
+    ] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True,
     )

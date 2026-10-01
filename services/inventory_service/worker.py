@@ -1,21 +1,24 @@
 from services.inventory_service.config import settings
 from services.inventory_service.db import SessionLocal
-from services.inventory_service.models import InventoryReservation
+from services.inventory_service.models import (
+    InventoryReservation,
+    OutboxMessage,
+)
 from shared.events.models import Event
+from shared.events.order_events import (
+    parse_order_created,
+)
 from shared.kafka.consumer import KafkaConsumer
-from shared.kafka.producer import KafkaProducer
 from shared.kafka.dead_letter import DeadLetterPublisher
-from shared.events.order_events import parse_order_created
+
 
 consumer = KafkaConsumer(
     group_id="inventory-service",
-    bootstrap_servers=settings.kafka_bootstrap_servers,
+    bootstrap_servers=(
+        settings.kafka_bootstrap_servers
+    ),
 )
 
-
-producer = KafkaProducer(
-    bootstrap_servers=settings.kafka_bootstrap_servers,
-)
 
 dead_letter = DeadLetterPublisher(
     topic="inventory-service.dlq",
@@ -23,6 +26,7 @@ dead_letter = DeadLetterPublisher(
         settings.kafka_bootstrap_servers
     ),
 )
+
 
 def handle_event(event: dict) -> None:
     if event["event_type"] != "order.created":
@@ -55,8 +59,10 @@ def handle_event(event: dict) -> None:
         )
 
         db.add(reservation)
-        db.commit()
-        db.refresh(reservation)
+
+        # Send INSERT to PostgreSQL so reservation.id exists,
+        # but do NOT commit yet.
+        db.flush()
 
         inventory_event = Event.create(
             event_type="inventory.reserved",
@@ -67,16 +73,23 @@ def handle_event(event: dict) -> None:
             },
         )
 
-        producer.publish(
+        outbox_message = OutboxMessage(
+            event_id=inventory_event.event_id,
             topic=settings.inventory_events_topic,
-            event=inventory_event,
-            key=str(reservation.order_id),
+            event_key=str(reservation.order_id),
+            payload=inventory_event.to_dict(),
         )
+
+        db.add(outbox_message)
+
+        # Reservation + event are committed together.
+        db.commit()
 
         print(
             f"Inventory reserved for "
             f"order {reservation.order_id}"
         )
+
 
 if __name__ == "__main__":
     consumer.subscribe(

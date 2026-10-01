@@ -1,20 +1,21 @@
 from services.order_service.config import settings
 from services.order_service.db import SyncSessionLocal
-from services.order_service.models import Order
+from services.order_service.models import (
+    Order,
+    OutboxMessage,
+)
 from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
-from shared.kafka.producer import KafkaProducer
 from shared.kafka.dead_letter import DeadLetterPublisher
+
 
 consumer = KafkaConsumer(
     group_id="order-service-status",
-    bootstrap_servers=settings.kafka_bootstrap_servers,
+    bootstrap_servers=(
+        settings.kafka_bootstrap_servers
+    ),
 )
 
-
-producer = KafkaProducer(
-    bootstrap_servers=settings.kafka_bootstrap_servers,
-)
 
 dead_letter = DeadLetterPublisher(
     topic="order-service-status.dlq",
@@ -22,6 +23,7 @@ dead_letter = DeadLetterPublisher(
         settings.kafka_bootstrap_servers
     ),
 )
+
 
 def handle_event(event: dict) -> None:
     event_type = event["event_type"]
@@ -63,8 +65,6 @@ def handle_event(event: dict) -> None:
         ):
             order.status = "CONFIRMED"
 
-        db.commit()
-
         if (
             order.status == "CONFIRMED"
             and not was_confirmed
@@ -78,11 +78,16 @@ def handle_event(event: dict) -> None:
                 },
             )
 
-            producer.publish(
+            outbox_message = OutboxMessage(
+                event_id=confirmed_event.event_id,
                 topic="notifications.events",
-                event=confirmed_event,
-                key=str(order.id),
+                event_key=str(order.id),
+                payload=confirmed_event.to_dict(),
             )
+
+            db.add(outbox_message)
+
+        db.commit()
 
         print(
             f"Order {order.id}: "

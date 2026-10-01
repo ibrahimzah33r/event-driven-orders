@@ -2,14 +2,17 @@ from decimal import Decimal
 
 from services.payment_service.config import settings
 from services.payment_service.db import SessionLocal
-from services.payment_service.models import Payment
+from services.payment_service.models import (
+    OutboxMessage,
+    Payment,
+)
 from shared.events.models import Event
-from shared.kafka.consumer import KafkaConsumer
-from shared.kafka.producer import KafkaProducer
-from shared.kafka.dead_letter import DeadLetterPublisher
 from shared.events.order_events import (
     parse_order_created,
 )
+from shared.kafka.consumer import KafkaConsumer
+from shared.kafka.dead_letter import DeadLetterPublisher
+
 
 consumer = KafkaConsumer(
     group_id="payment-service",
@@ -19,18 +22,13 @@ consumer = KafkaConsumer(
 )
 
 
-producer = KafkaProducer(
-    bootstrap_servers=(
-        settings.kafka_bootstrap_servers
-    ),
-)
-
 dead_letter = DeadLetterPublisher(
     topic="payment-service.dlq",
     bootstrap_servers=(
         settings.kafka_bootstrap_servers
     ),
 )
+
 
 def handle_event(event: dict) -> None:
     if event["event_type"] != "order.created":
@@ -65,8 +63,7 @@ def handle_event(event: dict) -> None:
         )
 
         db.add(payment)
-        db.commit()
-        db.refresh(payment)
+        db.flush()
 
         payment_event = Event.create(
             event_type="payment.completed",
@@ -78,17 +75,23 @@ def handle_event(event: dict) -> None:
             },
         )
 
-        producer.publish(
+        outbox_message = OutboxMessage(
+            event_id=payment_event.event_id,
             topic=settings.payment_events_topic,
-            event=payment_event,
-            key=str(payment.order_id),
+            event_key=str(payment.order_id),
+            payload=payment_event.to_dict(),
         )
+
+        db.add(outbox_message)
+
+        db.commit()
 
         print(
             f"Payment {payment.id} completed "
             f"for order {payment.order_id}"
         )
-        
+
+
 if __name__ == "__main__":
     consumer.subscribe(
         settings.order_events_topic

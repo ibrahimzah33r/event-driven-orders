@@ -1,0 +1,15 @@
+[payment-worker] %6|1791207188.024|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 165ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791207188.033|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 179ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791207188.249|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791207188.261|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-worker] %6|1791207189.124|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791207191.674|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-worker] %6|1791207203.311|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791207211.611|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791207221.625|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 13ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-worker] %6|1791207229.616|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 34ms in state APIVERSION_QUERY, 4 identical error(s) suppressed)
+[payment-worker] Payment Service listening for order events...
+[payment-worker] 
+[payment-worker] Consumed from orders.events partition=0 offset=19
+[payment-worker] Payment 19 completed for order 15
+[payment-worker] Committed offset 19

@@ -1,0 +1,15 @@
+[notification-worker] %6|1791207188.039|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 119ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791207188.040|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 120ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791207188.221|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 6ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[notification-worker] %6|1791207188.337|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 25ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[notification-worker] %6|1791207202.246|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791207212.256|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 8ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791207220.671|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY, 5 identical error(s) suppressed)
+[notification-worker] %6|1791207222.262|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 5ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[notification-worker] %6|1791207232.290|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791207242.341|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 38ms in state APIVERSION_QUERY)
+[notification-worker] Notification Service listening for confirmed orders...
+[notification-worker] 
+[notification-worker] Consumed from notifications.events partition=0 offset=13
+[notification-worker] Notification 14 sent for order 15
+[notification-worker] Committed offset 13

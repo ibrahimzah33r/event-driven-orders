@@ -1,0 +1,23 @@
+[order-worker] %6|1791207188.042|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 102ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207188.043|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 105ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207188.295|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 5ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-worker] %6|1791207188.301|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207189.346|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 16ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207192.770|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207201.293|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207202.791|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 12ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207211.303|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 4ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207212.794|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 2ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-worker] %6|1791207221.311|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-worker] %6|1791207229.989|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207240.007|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 5ms in state APIVERSION_QUERY)
+[order-worker] %6|1791207247.443|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY, 4 identical error(s) suppressed)
+[order-worker] Order Service worker listening for payment and inventory events...
+[order-worker] 
+[order-worker] Consumed from payments.events partition=0 offset=18
+[order-worker] Order 15: status=CREATED, payment=COMPLETED, inventory=PENDING
+[order-worker] Committed offset 18
+[order-worker] 
+[order-worker] Consumed from inventory.events partition=0 offset=19
+[order-worker] Order 15: status=CONFIRMED, payment=COMPLETED, inventory=RESERVED
+[order-worker] Committed offset 19

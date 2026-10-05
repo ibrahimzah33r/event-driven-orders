@@ -1,0 +1,6 @@
+[inventory-outbox] %6|1791207188.033|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 190ms in state APIVERSION_QUERY)
+[inventory-outbox] %6|1791207188.353|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-outbox] %6|1791207225.999|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 6 identical error(s) suppressed)
+[inventory-outbox] Outbox publisher started.
+[inventory-outbox] Produced event to inventory.events partition=0 offset=19
+[inventory-outbox] Published outbox event 8718ad33-dbe2-4642-8534-93af4490dc43 to inventory.events

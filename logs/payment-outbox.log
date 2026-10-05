@@ -1,0 +1,10 @@
+[payment-outbox] %6|1791207187.996|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 248ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791207188.261|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791207189.420|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 4ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791207192.763|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-outbox] %6|1791207202.773|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791207212.776|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 2ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791207222.781|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-outbox] Outbox publisher started.
+[payment-outbox] Produced event to payments.events partition=0 offset=18
+[payment-outbox] Published outbox event 2fcf11b4-b1bf-4f28-9d25-e65a3a7b09b3 to payments.events

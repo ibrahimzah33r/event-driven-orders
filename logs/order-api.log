@@ -1,0 +1,18 @@
+[order-api] INFO:     Started server process [3677]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:40336 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:33332 - "GET /orders/ORDER_ID HTTP/1.1" 422 Unprocessable Content
+[order-api] INFO:     127.0.0.1:44256 - "GET /orders/14 HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [3677]
+[order-api] INFO:     Started server process [5361]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:50106 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:36516 - "GET /orders/15 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:60576 - "GET /orders/15 HTTP/1.1" 200 OK

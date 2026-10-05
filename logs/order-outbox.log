@@ -1,0 +1,6 @@
+[order-outbox] %6|1791207188.012|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 277ms in state APIVERSION_QUERY)
+[order-outbox] %6|1791207188.311|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 4ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-outbox] %6|1791207200.670|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[order-outbox] %6|1791207210.683|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY)
+[order-outbox] %6|1791207220.690|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 5ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-outbox] Outbox publisher started.

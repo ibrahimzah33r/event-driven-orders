@@ -1,0 +1,15 @@
+[inventory-worker] %6|1791207188.034|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 161ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791207188.039|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 166ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791207188.224|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791207188.285|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-worker] %6|1791207189.210|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 33ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791207191.681|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-worker] %6|1791207210.710|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791207218.520|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791207221.425|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 5 identical error(s) suppressed)
+[inventory-worker] %6|1791207228.542|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 2ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-worker] Inventory Service listening for order events...
+[inventory-worker] 
+[inventory-worker] Consumed from orders.events partition=0 offset=19
+[inventory-worker] Inventory reserved for order 15
+[inventory-worker] Committed offset 19

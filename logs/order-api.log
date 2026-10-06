@@ -87,3 +87,154 @@
 [order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 [order-api] INFO:     127.0.0.1:46916 - "GET /health/live HTTP/1.1" 200 OK
 [order-api] INFO:     127.0.0.1:46932 - "GET /health/ready HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [13069]
+[order-api] INFO:     Started server process [16648]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:51982 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:51986 - "GET /orders/20 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:52002 - "GET /orders/20 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:52004 - "GET /orders/20 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:52010 - "GET /orders/20 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:52012 - "GET /orders/20 HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [16648]
+[order-api] INFO:     Started server process [18295]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:41972 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:41982 - "GET /orders/21 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:41990 - "GET /orders/21 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:41992 - "GET /orders/21 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:42002 - "GET /orders/21 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:42004 - "GET /orders/21 HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [18295]
+[order-api] INFO:     Started server process [19682]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [19682]
+[order-api] INFO:     Started server process [20996]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     Started server process [24067]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:53912 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Finished server process [24067]
+[order-api] INFO:     Started server process [26120]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:51356 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:53194 - "GET /orders/23 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43784 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:43794 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43324 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43330 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43336 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43342 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43344 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43352 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43360 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43364 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43372 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43374 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43376 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43380 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43384 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43388 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43398 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43402 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:43414 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53842 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53846 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53848 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53858 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53860 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53872 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53888 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53892 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53900 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53906 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53922 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53928 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53938 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53946 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53960 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53976 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:53990 - "GET /orders/24 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:54942 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:54950 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:54958 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:54966 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:54982 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:54990 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55006 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55010 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55024 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55032 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55044 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55048 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55058 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55064 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55074 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55084 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55096 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:55100 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35886 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35894 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35910 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35924 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35934 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35936 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35946 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35954 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35966 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35982 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35986 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35992 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35994 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:36000 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:36010 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:36026 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:36030 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:36038 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:52918 - "GET /orders/25 HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [26120]
+[order-api] INFO:     Started server process [30137]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:48734 - "GET /health/live HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:48744 - "GET /health/ready HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51744 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:51746 - "GET /orders/26 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51750 - "GET /orders/26 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51762 - "GET /orders/26 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51776 - "GET /orders/26 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51788 - "GET /orders/26 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51804 - "GET /orders/26 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:51808 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:51812 - "GET /orders/27 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:34780 - "GET /orders/27 HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:34790 - "GET /orders/27 HTTP/1.1" 200 OK

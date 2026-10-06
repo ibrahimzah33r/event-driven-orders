@@ -29,3 +29,37 @@
 [payment-outbox] %6|1791287025.601|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 14ms in state APIVERSION_QUERY)
 [payment-outbox] %6|1791287029.159|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
 [payment-outbox] {"timestamp": "2026-10-06T11:49:45.969077+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T12:11:18.085095+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T12:14:43.143973+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "b4c8ed2c-3a0b-4237-8c9d-6649795c7516", "event_type": "payment.completed", "order_id": 20, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=23
+[payment-outbox] {"timestamp": "2026-10-06T12:14:43.162825+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "b4c8ed2c-3a0b-4237-8c9d-6649795c7516", "event_type": "payment.completed", "order_id": 20, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T12:17:34.591913+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T12:19:17.965575+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "0218ee64-e729-40b7-bfe6-8ebb0203bab6", "event_type": "payment.completed", "order_id": 21, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=24
+[payment-outbox] {"timestamp": "2026-10-06T12:19:17.998986+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "0218ee64-e729-40b7-bfe6-8ebb0203bab6", "event_type": "payment.completed", "order_id": 21, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T12:21:34.305717+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T12:24:44.453820+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T12:29:43.918677+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "6ba9d082-a94f-4f35-ae9b-8276e38488fb", "event_type": "payment.completed", "order_id": 888888, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=25
+[payment-outbox] {"timestamp": "2026-10-06T12:29:43.951115+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "6ba9d082-a94f-4f35-ae9b-8276e38488fb", "event_type": "payment.completed", "order_id": 888888, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T13:49:06.596630+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T13:59:10.597062+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T13:59:14.718364+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "1fd4f093-7597-4b1f-8e6e-c3b5ff33a8c4", "event_type": "payment.completed", "order_id": 22, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=26
+[payment-outbox] {"timestamp": "2026-10-06T13:59:15.014822+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "1fd4f093-7597-4b1f-8e6e-c3b5ff33a8c4", "event_type": "payment.completed", "order_id": 22, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T14:03:17.212562+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "a580ab80-6cd7-4c66-a2ab-a63299b2a33f", "event_type": "payment.completed", "order_id": 23, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=27
+[payment-outbox] {"timestamp": "2026-10-06T14:03:17.365725+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "a580ab80-6cd7-4c66-a2ab-a63299b2a33f", "event_type": "payment.completed", "order_id": 23, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T14:06:19.460902+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "53ad8516-480a-435c-8eb2-17f1422e3e83", "event_type": "payment.completed", "order_id": 24, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=28
+[payment-outbox] {"timestamp": "2026-10-06T14:06:19.589390+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "53ad8516-480a-435c-8eb2-17f1422e3e83", "event_type": "payment.completed", "order_id": 24, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T14:06:40.973033+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "af8b8a49-b9fd-4caa-9aa1-5c1a2857ffb5", "event_type": "payment.completed", "order_id": 25, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=29
+[payment-outbox] {"timestamp": "2026-10-06T14:06:41.080711+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "af8b8a49-b9fd-4caa-9aa1-5c1a2857ffb5", "event_type": "payment.completed", "order_id": 25, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T14:10:30.472464+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T14:13:21.835362+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "2920b190-3ab0-4293-91d9-a83ba4f6868e", "event_type": "payment.completed", "order_id": 26, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=30
+[payment-outbox] {"timestamp": "2026-10-06T14:13:22.041021+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "2920b190-3ab0-4293-91d9-a83ba4f6868e", "event_type": "payment.completed", "order_id": 26, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-06T14:13:28.397361+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "ba5e3349-a860-4446-b414-3da21a5df3f3", "event_type": "payment.completed", "order_id": 27, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=31
+[payment-outbox] {"timestamp": "2026-10-06T14:13:28.430521+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "ba5e3349-a860-4446-b414-3da21a5df3f3", "event_type": "payment.completed", "order_id": 27, "topic": "payments.events"}

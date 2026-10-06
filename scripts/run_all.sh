@@ -9,6 +9,7 @@ cd "$ROOT_DIR"
 PYTHON="$ROOT_DIR/.venv/bin/python"
 UVICORN="$ROOT_DIR/.venv/bin/uvicorn"
 LOG_DIR="$ROOT_DIR/logs"
+RUN_DIR="$ROOT_DIR/.run"
 
 if [ ! -x "$PYTHON" ]; then
     echo "ERROR: .venv not found."
@@ -16,12 +17,13 @@ if [ ! -x "$PYTHON" ]; then
     exit 1
 fi
 
-# NEW:
-# Force Python to print logs immediately even when output
-# is being redirected through pipes/files.
 export PYTHONUNBUFFERED=1
 
 mkdir -p "$LOG_DIR"
+mkdir -p "$RUN_DIR"
+
+# Remove PID files left from an earlier run.
+rm -f "$RUN_DIR"/*.pid
 
 PIDS=()
 
@@ -31,6 +33,7 @@ start_service() {
     shift
 
     LOG_FILE="$LOG_DIR/$NAME.log"
+    PID_FILE="$RUN_DIR/$NAME.pid"
 
     echo "Starting $NAME..."
     echo "Log: $LOG_FILE"
@@ -42,7 +45,13 @@ start_service() {
         ) \
         2>&1 &
 
-    PIDS+=("$!")
+    PID="$!"
+
+    PIDS+=("$PID")
+
+    echo "$PID" > "$PID_FILE"
+
+    echo "PID: $PID"
 }
 
 
@@ -55,6 +64,8 @@ cleanup() {
     done
 
     wait "${PIDS[@]}" 2>/dev/null || true
+
+    rm -f "$RUN_DIR"/*.pid
 
     echo "Application services stopped."
     echo "Docker containers left running."
@@ -133,6 +144,7 @@ echo "API:  http://127.0.0.1:8000"
 echo "Docs: http://127.0.0.1:8000/docs"
 echo
 echo "Logs: $LOG_DIR"
+echo "PIDs: $RUN_DIR"
 echo
 echo "Useful commands:"
 echo "  tail -F logs/*.log"

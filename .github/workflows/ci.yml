@@ -1,0 +1,150 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_USER: event_orders
+      POSTGRES_PASSWORD: event_orders_dev
+      POSTGRES_DB: event_orders
+      POSTGRES_PORT: 5432
+
+      DATABASE_URL: postgresql+psycopg://event_orders:event_orders_dev@127.0.0.1:5432/event_orders
+
+      KAFKA_HOST_PORT: 9092
+      KAFKA_BOOTSTRAP_SERVERS: 127.0.0.1:9092
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Create virtual environment
+        run: |
+          python -m venv .venv
+
+      - name: Install dependencies
+        run: |
+          .venv/bin/python -m pip install --upgrade pip
+          .venv/bin/python -m pip install -r requirements.txt
+
+      - name: Make scripts executable
+        run: |
+          chmod +x scripts/run_all.sh
+          chmod +x scripts/run_integration_tests.sh
+
+      - name: Start Docker infrastructure
+        run: |
+          docker compose up -d
+
+      - name: Show Docker status
+        run: |
+          docker compose ps
+
+      - name: Wait for PostgreSQL
+        run: |
+          for i in {1..30}; do
+            if docker compose exec -T postgres \
+              pg_isready \
+              -U event_orders \
+              -d event_orders; then
+
+              echo "PostgreSQL is ready."
+              exit 0
+            fi
+
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
+
+          echo "PostgreSQL did not become ready."
+          docker compose logs postgres
+          exit 1
+
+      - name: Wait for Kafka
+        run: |
+          for i in {1..30}; do
+            if docker compose exec -T kafka \
+              /opt/kafka/bin/kafka-topics.sh \
+              --bootstrap-server kafka:19092 \
+              --list; then
+
+              echo "Kafka is ready."
+              exit 0
+            fi
+
+            echo "Waiting for Kafka..."
+            sleep 2
+          done
+
+          echo "Kafka did not become ready."
+          docker compose logs kafka
+          exit 1
+
+      - name: Run Order migrations
+        run: |
+          .venv/bin/alembic \
+            -c services/order_service/alembic.ini \
+            upgrade head
+
+      - name: Run Payment migrations
+        run: |
+          .venv/bin/alembic \
+            -c services/payment_service/alembic.ini \
+            upgrade head
+
+      - name: Run Inventory migrations
+        run: |
+          .venv/bin/alembic \
+            -c services/inventory_service/alembic.ini \
+            upgrade head
+
+      - name: Run Notification migrations
+        run: |
+          .venv/bin/alembic \
+            -c services/notification_service/alembic.ini \
+            upgrade head
+
+      - name: Run integration and failure tests
+        run: |
+          ./scripts/run_integration_tests.sh
+
+      - name: Show application logs on failure
+        if: failure()
+        run: |
+          echo "===== Application logs ====="
+
+          if [ -d logs ]; then
+            find logs \
+              -maxdepth 1 \
+              -type f \
+              -print \
+              -exec sh -c '
+                echo
+                echo "----- $1 -----"
+                tail -n 100 "$1"
+              ' _ {} \;
+          fi
+
+      - name: Show Docker logs on failure
+        if: failure()
+        run: |
+          echo "===== Docker Compose logs ====="
+          docker compose logs --tail=200
+
+      - name: Stop Docker infrastructure
+        if: always()
+        run: |
+          docker compose down

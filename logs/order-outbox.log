@@ -4,3 +4,32 @@
 [order-outbox] %6|1791207210.683|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 3ms in state APIVERSION_QUERY)
 [order-outbox] %6|1791207220.690|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 5ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
 [order-outbox] Outbox publisher started.
+[order-outbox] Outbox publisher started.
+[order-outbox] Produced event to orders.events partition=0 offset=20
+[order-outbox] Published outbox event e27d1065-c016-498c-b646-c4b4ee4a1e41 to orders.events
+[order-outbox] Produced event to notifications.events partition=0 offset=14
+[order-outbox] Published outbox event 144c9905-f30e-4ae7-99df-9739612bb4f6 to notifications.events
+[order-outbox] Outbox publisher started.
+[order-outbox] Produced event to orders.events partition=0 offset=21
+[order-outbox] Published outbox event adbc76b9-ba5f-4ee6-9ea0-874949a00057 to orders.events
+[order-outbox] Produced event to notifications.events partition=0 offset=15
+[order-outbox] Published outbox event 44a08cd5-9292-48ea-a3e4-a1094ebeb42e to notifications.events
+[order-outbox] Outbox publisher started.
+[order-outbox] Produced event to orders.events partition=0 offset=22
+[order-outbox] Published outbox event 9f1c414f-b1e2-493a-92f0-7857b27386a6 to orders.events
+[order-outbox] {"timestamp": "2026-10-05T14:26:01.063511+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[order-outbox] {"timestamp": "2026-10-05T14:26:12.377823+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19, "topic": "orders.events"}
+[order-outbox] Produced event to orders.events partition=0 offset=23
+[order-outbox] {"timestamp": "2026-10-05T14:26:12.471598+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19, "topic": "orders.events"}
+[order-outbox] {"timestamp": "2026-10-05T14:32:07.802715+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[order-outbox] {"timestamp": "2026-10-05T14:44:05.918940+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[order-outbox] {"timestamp": "2026-10-06T11:43:44.374393+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[order-outbox] %6|1791287024.419|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 59ms in state APIVERSION_QUERY)
+[order-outbox] %6|1791287024.631|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 0ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-outbox] {"timestamp": "2026-10-06T11:49:46.011868+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[order-outbox] {"timestamp": "2026-10-06T11:49:48.543467+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18, "topic": "notifications.events"}
+[order-outbox] Produced event to notifications.events partition=0 offset=16
+[order-outbox] {"timestamp": "2026-10-06T11:49:48.807188+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18, "topic": "notifications.events"}
+[order-outbox] {"timestamp": "2026-10-06T11:49:48.815531+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19, "topic": "notifications.events"}
+[order-outbox] Produced event to notifications.events partition=0 offset=17
+[order-outbox] {"timestamp": "2026-10-06T11:49:48.833145+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19, "topic": "notifications.events"}

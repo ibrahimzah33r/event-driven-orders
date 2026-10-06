@@ -13,3 +13,41 @@
 [inventory-worker] Consumed from orders.events partition=0 offset=19
 [inventory-worker] Inventory reserved for order 15
 [inventory-worker] Committed offset 19
+[inventory-worker] Inventory Service listening for order events...
+[inventory-worker] 
+[inventory-worker] Consumed from orders.events partition=0 offset=20
+[inventory-worker] Inventory reserved for order 16
+[inventory-worker] Committed offset 20
+[inventory-worker] Inventory Service listening for order events...
+[inventory-worker] 
+[inventory-worker] Consumed from orders.events partition=0 offset=21
+[inventory-worker] Inventory reserved for order 17
+[inventory-worker] Committed offset 21
+[inventory-worker] {"timestamp": "2026-10-05T14:18:22.447689+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory Service started", "topic": "orders.events"}
+[inventory-worker] 
+[inventory-worker] Consumed from orders.events partition=0 offset=22
+[inventory-worker] {"timestamp": "2026-10-05T14:18:50.307096+00:00", "level": "INFO", "service": "inventory-service", "message": "Processing order.created", "event_id": "9f1c414f-b1e2-493a-92f0-7857b27386a6", "event_type": "order.created", "order_id": 18}
+[inventory-worker] {"timestamp": "2026-10-05T14:18:50.351568+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory reserved", "event_id": "0c6445f0-cac0-4e76-a0ec-a5a958be578b", "event_type": "inventory.reserved", "order_id": 18}
+[inventory-worker] Committed offset 22
+[inventory-worker] {"timestamp": "2026-10-05T14:26:00.380276+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-05T14:26:00.380691+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory Service started", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-05T14:26:29.652609+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka event consumed", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19, "topic": "orders.events", "partition": 0, "offset": 23}
+[inventory-worker] {"timestamp": "2026-10-05T14:26:29.653018+00:00", "level": "INFO", "service": "inventory-service", "message": "Processing order.created", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19}
+[inventory-worker] {"timestamp": "2026-10-05T14:26:29.793623+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory reserved", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19}
+[inventory-worker] {"timestamp": "2026-10-05T14:26:29.796768+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka offset committed", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19, "topic": "orders.events", "partition": 0, "offset": 23}
+[inventory-worker] {"timestamp": "2026-10-05T14:32:07.129943+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-05T14:32:07.130426+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory Service started", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-05T14:44:06.007883+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-05T14:44:06.008333+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory Service started", "topic": "orders.events"}
+[inventory-worker] %6|1791287024.456|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 12ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791287024.456|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 22ms in state APIVERSION_QUERY)
+[inventory-worker] {"timestamp": "2026-10-06T11:43:44.457420+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-06T11:43:44.457906+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory Service started", "topic": "orders.events"}
+[inventory-worker] %6|1791287024.684|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791287024.724|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-worker] %6|1791287025.640|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 2ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791287025.682|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791287028.435|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY)
+[inventory-worker] %6|1791287029.539|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-worker] {"timestamp": "2026-10-06T11:49:46.003833+00:00", "level": "INFO", "service": "kafka-consumer:inventory-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[inventory-worker] {"timestamp": "2026-10-06T11:49:46.004699+00:00", "level": "INFO", "service": "inventory-service", "message": "Inventory Service started", "topic": "orders.events"}

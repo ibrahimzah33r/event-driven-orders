@@ -16,3 +16,74 @@
 [order-api] INFO:     127.0.0.1:50106 - "POST /orders HTTP/1.1" 201 Created
 [order-api] INFO:     127.0.0.1:36516 - "GET /orders/15 HTTP/1.1" 200 OK
 [order-api] INFO:     127.0.0.1:60576 - "GET /orders/15 HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [5361]
+[order-api] INFO:     Started server process [10923]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:33060 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     127.0.0.1:46132 - "GET /orders/16 HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [10923]
+[order-api] INFO:     Started server process [12746]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:39810 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [12746]
+[order-api] INFO:     Started server process [14083]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:57942 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [14083]
+[order-api] INFO:     Started server process [16226]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:53876 - "POST /orders HTTP/1.1" 201 Created
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [16226]
+[order-api] INFO:     Started server process [17926]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:49042 - "GET /health/live HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:45092 - "GET /health/ready HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:35228 - "GET /health/ready HTTP/1.1" 200 OK
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [17926]
+[order-api] INFO:     Started server process [19742]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:46594 - "GET /health/ready HTTP/1.1" 200 OK
+[order-api] INFO:     Started server process [11400]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     Shutting down
+[order-api] INFO:     Waiting for application shutdown.
+[order-api] INFO:     Application shutdown complete.
+[order-api] INFO:     Finished server process [11400]
+[order-api] INFO:     Started server process [13069]
+[order-api] INFO:     Waiting for application startup.
+[order-api] INFO:     Application startup complete.
+[order-api] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[order-api] INFO:     127.0.0.1:46916 - "GET /health/live HTTP/1.1" 200 OK
+[order-api] INFO:     127.0.0.1:46932 - "GET /health/ready HTTP/1.1" 200 OK

@@ -13,3 +13,39 @@
 [payment-worker] Consumed from orders.events partition=0 offset=19
 [payment-worker] Payment 19 completed for order 15
 [payment-worker] Committed offset 19
+[payment-worker] {"timestamp": "2026-10-05T14:04:31.127993+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started"}
+[payment-worker] 
+[payment-worker] Consumed from orders.events partition=0 offset=20
+[payment-worker] {"timestamp": "2026-10-05T14:04:37.956796+00:00", "level": "INFO", "service": "payment-service", "message": "Processing order.created"}
+[payment-worker] {"timestamp": "2026-10-05T14:04:38.073939+00:00", "level": "INFO", "service": "payment-service", "message": "Payment completed"}
+[payment-worker] Committed offset 20
+[payment-worker] {"timestamp": "2026-10-05T14:14:43.211667+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}
+[payment-worker] 
+[payment-worker] Consumed from orders.events partition=0 offset=21
+[payment-worker] {"timestamp": "2026-10-05T14:14:59.096925+00:00", "level": "INFO", "service": "payment-service", "message": "Processing order.created", "event_id": "adbc76b9-ba5f-4ee6-9ea0-874949a00057", "event_type": "order.created", "order_id": 17}
+[payment-worker] {"timestamp": "2026-10-05T14:14:59.200155+00:00", "level": "INFO", "service": "payment-service", "message": "Payment completed", "event_id": "2a39bb3a-0076-4de2-83c1-ef17f9120df5", "event_type": "payment.completed", "order_id": 17}
+[payment-worker] Committed offset 21
+[payment-worker] {"timestamp": "2026-10-05T14:18:22.444198+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}
+[payment-worker] 
+[payment-worker] Consumed from orders.events partition=0 offset=22
+[payment-worker] {"timestamp": "2026-10-05T14:18:47.380385+00:00", "level": "INFO", "service": "payment-service", "message": "Processing order.created", "event_id": "9f1c414f-b1e2-493a-92f0-7857b27386a6", "event_type": "order.created", "order_id": 18}
+[payment-worker] {"timestamp": "2026-10-05T14:18:47.456207+00:00", "level": "INFO", "service": "payment-service", "message": "Payment completed", "event_id": "a3f12e65-d276-438d-b48b-15985182a69f", "event_type": "payment.completed", "order_id": 18}
+[payment-worker] Committed offset 22
+[payment-worker] {"timestamp": "2026-10-05T14:26:00.367887+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-05T14:26:00.368358+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-05T14:26:26.720660+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka event consumed", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19, "topic": "orders.events", "partition": 0, "offset": 23}
+[payment-worker] {"timestamp": "2026-10-05T14:26:26.721194+00:00", "level": "INFO", "service": "payment-service", "message": "Processing order.created", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19}
+[payment-worker] {"timestamp": "2026-10-05T14:26:26.794867+00:00", "level": "INFO", "service": "payment-service", "message": "Payment completed", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19}
+[payment-worker] {"timestamp": "2026-10-05T14:26:26.801224+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka offset committed", "event_id": "eb3adeef-b2ac-4200-892a-a0e75e4de39e", "event_type": "order.created", "order_id": 19, "topic": "orders.events", "partition": 0, "offset": 23}
+[payment-worker] {"timestamp": "2026-10-05T14:32:07.662126+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-05T14:32:07.662891+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-05T14:44:05.952990+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-05T14:44:05.953785+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}
+[payment-worker] %6|1791287024.442|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 22ms in state APIVERSION_QUERY)
+[payment-worker] %6|1791287024.484|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY)
+[payment-worker] {"timestamp": "2026-10-06T11:43:44.485931+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-06T11:43:44.487339+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}
+[payment-worker] %6|1791287024.687|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 0ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-worker] %6|1791287024.700|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 2ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-worker] {"timestamp": "2026-10-06T11:49:46.001079+00:00", "level": "INFO", "service": "kafka-consumer:payment-service", "message": "Kafka consumer subscribed", "topic": "orders.events"}
+[payment-worker] {"timestamp": "2026-10-06T11:49:46.001495+00:00", "level": "INFO", "service": "payment-service", "message": "Payment Service started", "topic": "orders.events"}

@@ -4,3 +4,23 @@
 [inventory-outbox] Outbox publisher started.
 [inventory-outbox] Produced event to inventory.events partition=0 offset=19
 [inventory-outbox] Published outbox event 8718ad33-dbe2-4642-8534-93af4490dc43 to inventory.events
+[inventory-outbox] Outbox publisher started.
+[inventory-outbox] Produced event to inventory.events partition=0 offset=20
+[inventory-outbox] Published outbox event 8d5bacef-38fd-44f8-9602-44d19154153b to inventory.events
+[inventory-outbox] Outbox publisher started.
+[inventory-outbox] Produced event to inventory.events partition=0 offset=21
+[inventory-outbox] Published outbox event 38b01ee9-8055-4f68-b5d9-02a9c5483e32 to inventory.events
+[inventory-outbox] Outbox publisher started.
+[inventory-outbox] Produced event to inventory.events partition=0 offset=22
+[inventory-outbox] Published outbox event 0c6445f0-cac0-4e76-a0ec-a5a958be578b to inventory.events
+[inventory-outbox] {"timestamp": "2026-10-05T14:26:00.734160+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[inventory-outbox] {"timestamp": "2026-10-05T14:26:30.455091+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19, "topic": "inventory.events"}
+[inventory-outbox] Produced event to inventory.events partition=0 offset=23
+[inventory-outbox] {"timestamp": "2026-10-05T14:26:30.470461+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19, "topic": "inventory.events"}
+[inventory-outbox] {"timestamp": "2026-10-05T14:32:07.384938+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[inventory-outbox] {"timestamp": "2026-10-05T14:44:05.965625+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[inventory-outbox] {"timestamp": "2026-10-06T11:43:44.424342+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[inventory-outbox] %6|1791287024.433|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[inventory-outbox] %6|1791287024.737|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 2ms in state APIVERSION_QUERY)
+[inventory-outbox] %6|1791287025.498|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 94ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[inventory-outbox] {"timestamp": "2026-10-06T11:49:45.959382+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}

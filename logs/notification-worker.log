@@ -13,3 +13,40 @@
 [notification-worker] Consumed from notifications.events partition=0 offset=13
 [notification-worker] Notification 14 sent for order 15
 [notification-worker] Committed offset 13
+[notification-worker] Notification Service listening for confirmed orders...
+[notification-worker] 
+[notification-worker] Consumed from notifications.events partition=0 offset=14
+[notification-worker] Notification 15 sent for order 16
+[notification-worker] Committed offset 14
+[notification-worker] Notification Service listening for confirmed orders...
+[notification-worker] 
+[notification-worker] Consumed from notifications.events partition=0 offset=15
+[notification-worker] Notification 16 sent for order 17
+[notification-worker] Committed offset 15
+[notification-worker] {"timestamp": "2026-10-05T14:18:22.385700+00:00", "level": "INFO", "service": "notification-service", "message": "Notification Service started", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-05T14:26:00.691779+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka consumer subscribed", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-05T14:26:00.692387+00:00", "level": "INFO", "service": "notification-service", "message": "Notification Service started", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-05T14:32:07.531391+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka consumer subscribed", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-05T14:32:07.531703+00:00", "level": "INFO", "service": "notification-service", "message": "Notification Service started", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-05T14:44:05.940692+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka consumer subscribed", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-05T14:44:05.940994+00:00", "level": "INFO", "service": "notification-service", "message": "Notification Service started", "topic": "notifications.events"}
+[notification-worker] %6|1791287024.407|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 53ms in state APIVERSION_QUERY)
+[notification-worker] {"timestamp": "2026-10-06T11:43:44.418666+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka consumer subscribed", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-06T11:43:44.419066+00:00", "level": "INFO", "service": "notification-service", "message": "Notification Service started", "topic": "notifications.events"}
+[notification-worker] %6|1791287024.423|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 11ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791287024.619|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791287024.650|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791287025.276|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 6ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791287025.556|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY)
+[notification-worker] %6|1791287028.665|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[notification-worker] %6|1791287028.911|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[notification-worker] {"timestamp": "2026-10-06T11:49:46.016966+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka consumer subscribed", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-06T11:49:46.019581+00:00", "level": "INFO", "service": "notification-service", "message": "Notification Service started", "topic": "notifications.events"}
+[notification-worker] {"timestamp": "2026-10-06T11:50:03.911351+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka event consumed", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18, "topic": "notifications.events", "partition": 0, "offset": 16}
+[notification-worker] {"timestamp": "2026-10-06T11:50:03.911647+00:00", "level": "INFO", "service": "notification-service", "message": "Processing order.confirmed", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18}
+[notification-worker] {"timestamp": "2026-10-06T11:50:04.074634+00:00", "level": "INFO", "service": "notification-service", "message": "Notification sent", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18}
+[notification-worker] {"timestamp": "2026-10-06T11:50:04.077760+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka offset committed", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18, "topic": "notifications.events", "partition": 0, "offset": 16}
+[notification-worker] {"timestamp": "2026-10-06T11:50:04.078004+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka event consumed", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19, "topic": "notifications.events", "partition": 0, "offset": 17}
+[notification-worker] {"timestamp": "2026-10-06T11:50:04.078099+00:00", "level": "INFO", "service": "notification-service", "message": "Processing order.confirmed", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19}
+[notification-worker] {"timestamp": "2026-10-06T11:50:04.089895+00:00", "level": "INFO", "service": "notification-service", "message": "Notification sent", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19}
+[notification-worker] {"timestamp": "2026-10-06T11:50:04.094039+00:00", "level": "INFO", "service": "kafka-consumer:notification-service", "message": "Kafka offset committed", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19, "topic": "notifications.events", "partition": 0, "offset": 17}

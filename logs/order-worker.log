@@ -21,3 +21,91 @@
 [order-worker] Consumed from inventory.events partition=0 offset=19
 [order-worker] Order 15: status=CONFIRMED, payment=COMPLETED, inventory=RESERVED
 [order-worker] Committed offset 19
+[order-worker] Order Service worker listening for payment and inventory events...
+[order-worker] 
+[order-worker] Consumed from payments.events partition=0 offset=19
+[order-worker] Order 16: status=CREATED, payment=COMPLETED, inventory=PENDING
+[order-worker] Committed offset 19
+[order-worker] 
+[order-worker] Consumed from inventory.events partition=0 offset=20
+[order-worker] Order 16: status=CONFIRMED, payment=COMPLETED, inventory=RESERVED
+[order-worker] Committed offset 20
+[order-worker] Order Service worker listening for payment and inventory events...
+[order-worker] 
+[order-worker] Consumed from inventory.events partition=0 offset=21
+[order-worker] Order 17: status=CREATED, payment=PENDING, inventory=RESERVED
+[order-worker] Committed offset 21
+[order-worker] 
+[order-worker] Consumed from payments.events partition=0 offset=20
+[order-worker] Order 17: status=CONFIRMED, payment=COMPLETED, inventory=RESERVED
+[order-worker] Committed offset 20
+[order-worker] Traceback (most recent call last):
+[order-worker]   File "<frozen runpy>", line 198, in _run_module_as_main
+[order-worker]   File "<frozen runpy>", line 88, in _run_code
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/services/order_service/worker.py", line 123, in <module>
+[order-worker]     settings.payment_events_topic,
+[order-worker]     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/.venv/lib/python3.14/site-packages/pydantic/main.py", line 1042, in __getattr__
+[order-worker]     raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+[order-worker] AttributeError: 'Settings' object has no attribute 'payment_events_topic'
+[order-worker] Traceback (most recent call last):
+[order-worker]   File "<frozen runpy>", line 198, in _run_module_as_main
+[order-worker]   File "<frozen runpy>", line 88, in _run_code
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/services/order_service/worker.py", line 123, in <module>
+[order-worker]     settings.payment_events_topic,
+[order-worker]     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/.venv/lib/python3.14/site-packages/pydantic/main.py", line 1042, in __getattr__
+[order-worker]     raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+[order-worker] AttributeError: 'Settings' object has no attribute 'payment_events_topic'
+[order-worker] Traceback (most recent call last):
+[order-worker]   File "<frozen runpy>", line 198, in _run_module_as_main
+[order-worker]   File "<frozen runpy>", line 88, in _run_code
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/services/order_service/worker.py", line 123, in <module>
+[order-worker]     settings.payment_events_topic,
+[order-worker]     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/.venv/lib/python3.14/site-packages/pydantic/main.py", line 1042, in __getattr__
+[order-worker]     raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+[order-worker] AttributeError: 'Settings' object has no attribute 'payment_events_topic'
+[order-worker] Traceback (most recent call last):
+[order-worker]   File "<frozen runpy>", line 198, in _run_module_as_main
+[order-worker]   File "<frozen runpy>", line 88, in _run_code
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/services/order_service/worker.py", line 123, in <module>
+[order-worker]     settings.payment_events_topic,
+[order-worker]     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/.venv/lib/python3.14/site-packages/pydantic/main.py", line 1042, in __getattr__
+[order-worker]     raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+[order-worker] AttributeError: 'Settings' object has no attribute 'payment_events_topic'
+[order-worker] %6|1791287024.419|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 40ms in state APIVERSION_QUERY)
+[order-worker] %6|1791287024.492|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 36ms in state APIVERSION_QUERY)
+[order-worker] %6|1791287024.583|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[order-worker] %6|1791287024.660|FAIL|rdkafka#producer-2| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 7ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[order-worker] Traceback (most recent call last):
+[order-worker]   File "<frozen runpy>", line 198, in _run_module_as_main
+[order-worker]   File "<frozen runpy>", line 88, in _run_code
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/services/order_service/worker.py", line 123, in <module>
+[order-worker]     settings.payment_events_topic,
+[order-worker]     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[order-worker]   File "/home/ibrahim/projects/event-driven-orders/.venv/lib/python3.14/site-packages/pydantic/main.py", line 1042, in __getattr__
+[order-worker]     raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+[order-worker] AttributeError: 'Settings' object has no attribute 'payment_events_topic'
+[order-worker] %6|1791287025.379|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 4ms in state APIVERSION_QUERY)
+[order-worker] {"timestamp": "2026-10-06T11:49:45.969283+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka consumer subscribed", "topic": "payments.events,inventory.events"}
+[order-worker] {"timestamp": "2026-10-06T11:49:45.969802+00:00", "level": "INFO", "service": "order-service-status", "message": "Order status worker started"}
+[order-worker] {"timestamp": "2026-10-06T11:49:46.676203+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka event consumed", "event_id": "0c6445f0-cac0-4e76-a0ec-a5a958be578b", "event_type": "inventory.reserved", "order_id": 18, "topic": "inventory.events", "partition": 0, "offset": 22}
+[order-worker] {"timestamp": "2026-10-06T11:49:46.676450+00:00", "level": "INFO", "service": "order-service-status", "message": "Processing status event", "event_id": "0c6445f0-cac0-4e76-a0ec-a5a958be578b", "event_type": "inventory.reserved", "order_id": 18}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.183824+00:00", "level": "INFO", "service": "order-service-status", "message": "Order status updated", "event_id": "0c6445f0-cac0-4e76-a0ec-a5a958be578b", "event_type": "inventory.reserved", "order_id": 18}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.580145+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka offset committed", "event_id": "0c6445f0-cac0-4e76-a0ec-a5a958be578b", "event_type": "inventory.reserved", "order_id": 18, "topic": "inventory.events", "partition": 0, "offset": 22}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.580520+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka event consumed", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19, "topic": "inventory.events", "partition": 0, "offset": 23}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.580638+00:00", "level": "INFO", "service": "order-service-status", "message": "Processing status event", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.596694+00:00", "level": "INFO", "service": "order-service-status", "message": "Order status updated", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.608361+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka offset committed", "event_id": "b9121ce9-0f72-4d35-8140-0e6f8b6cd521", "event_type": "inventory.reserved", "order_id": 19, "topic": "inventory.events", "partition": 0, "offset": 23}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.608661+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka event consumed", "event_id": "a3f12e65-d276-438d-b48b-15985182a69f", "event_type": "payment.completed", "order_id": 18, "topic": "payments.events", "partition": 0, "offset": 21}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.608767+00:00", "level": "INFO", "service": "order-service-status", "message": "Processing status event", "event_id": "a3f12e65-d276-438d-b48b-15985182a69f", "event_type": "payment.completed", "order_id": 18}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.615129+00:00", "level": "INFO", "service": "order-service-status", "message": "Order confirmed", "event_id": "7f655a84-2804-4c47-b4e7-e361ed4125a2", "event_type": "order.confirmed", "order_id": 18}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.642727+00:00", "level": "INFO", "service": "order-service-status", "message": "Order status updated", "event_id": "a3f12e65-d276-438d-b48b-15985182a69f", "event_type": "payment.completed", "order_id": 18}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.646171+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka offset committed", "event_id": "a3f12e65-d276-438d-b48b-15985182a69f", "event_type": "payment.completed", "order_id": 18, "topic": "payments.events", "partition": 0, "offset": 21}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.646364+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka event consumed", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19, "topic": "payments.events", "partition": 0, "offset": 22}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.646440+00:00", "level": "INFO", "service": "order-service-status", "message": "Processing status event", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.650195+00:00", "level": "INFO", "service": "order-service-status", "message": "Order confirmed", "event_id": "9de4732b-71d7-48b1-a772-9d047ea738a5", "event_type": "order.confirmed", "order_id": 19}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.659548+00:00", "level": "INFO", "service": "order-service-status", "message": "Order status updated", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19}
+[order-worker] {"timestamp": "2026-10-06T11:49:47.663927+00:00", "level": "INFO", "service": "kafka-consumer:order-service-status", "message": "Kafka offset committed", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19, "topic": "payments.events", "partition": 0, "offset": 22}

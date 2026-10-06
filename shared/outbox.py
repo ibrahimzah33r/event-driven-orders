@@ -3,6 +3,10 @@ from datetime import UTC, datetime
 
 from shared.events.models import Event
 from shared.kafka.producer import KafkaProducer
+from shared.logging_config import get_logger
+
+
+logger = get_logger("outbox-publisher")
 
 
 def run_outbox_publisher(
@@ -12,10 +16,12 @@ def run_outbox_publisher(
     poll_interval_seconds: float = 1.0,
 ) -> None:
     producer = KafkaProducer(
-        bootstrap_servers=bootstrap_servers,
+        bootstrap_servers=bootstrap_servers
     )
 
-    print("Outbox publisher started.")
+    logger.info(
+        "Outbox publisher started"
+    )
 
     while True:
         with session_factory() as db:
@@ -34,9 +40,25 @@ def run_outbox_publisher(
                 )
                 continue
 
+            event = Event(**message.payload)
+
+            order_id = (
+                event.data.get("order_id")
+                if isinstance(event.data, dict)
+                else None
+            )
+
+            log_context = {
+                "event_id": event.event_id,
+                "event_type": event.event_type,
+                "order_id": order_id,
+                "topic": message.topic,
+            }
+
             try:
-                event = Event(
-                    **message.payload
+                logger.info(
+                    "Publishing outbox event",
+                    extra=log_context,
                 )
 
                 producer.publish(
@@ -51,18 +73,18 @@ def run_outbox_publisher(
 
                 db.commit()
 
-                print(
-                    f"Published outbox event "
-                    f"{message.event_id} "
-                    f"to {message.topic}"
+                logger.info(
+                    "Outbox event published",
+                    extra=log_context,
                 )
 
-            except Exception as exc:
+            except Exception:
                 db.rollback()
 
-                print(
-                    f"Outbox publish failed: "
-                    f"{exc}"
+                logger.error(
+                    "Outbox publish failed",
+                    extra=log_context,
+                    exc_info=True,
                 )
 
                 time.sleep(

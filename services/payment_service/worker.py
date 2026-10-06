@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 from services.payment_service.config import settings
 from services.payment_service.db import SessionLocal
 from services.payment_service.models import (
@@ -12,6 +10,10 @@ from shared.events.order_events import (
 )
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.dead_letter import DeadLetterPublisher
+from shared.logging_config import get_logger
+
+
+logger = get_logger("payment-service")
 
 
 consumer = KafkaConsumer(
@@ -37,6 +39,15 @@ def handle_event(event: dict) -> None:
     order_event = parse_order_created(event)
     order_id = order_event.order_id
 
+    logger.info(
+        "Processing order.created",
+        extra={
+            "event_id": event["event_id"],
+            "event_type": event["event_type"],
+            "order_id": order_id,
+        },
+    )
+
     with SessionLocal() as db:
         existing_payment = (
             db.query(Payment)
@@ -47,22 +58,24 @@ def handle_event(event: dict) -> None:
         )
 
         if existing_payment is not None:
-            print(
-                f"Duplicate order event ignored: "
-                f"payment already exists for "
-                f"order {order_id}"
+            logger.warning(
+                "Duplicate order event ignored",
+                extra={
+                    "event_id": event["event_id"],
+                    "order_id": order_id,
+                },
             )
             return
 
         payment = Payment(
             order_id=order_id,
-            amount=Decimal(
-                str(order_event.total)
-            ),
+            amount=order_event.total,
             status="COMPLETED",
         )
 
         db.add(payment)
+
+        # Get payment.id while keeping the transaction open.
         db.flush()
 
         payment_event = Event.create(
@@ -84,11 +97,18 @@ def handle_event(event: dict) -> None:
 
         db.add(outbox_message)
 
+        # Payment + outgoing event committed atomically.
         db.commit()
 
-        print(
-            f"Payment {payment.id} completed "
-            f"for order {payment.order_id}"
+        logger.info(
+            "Payment completed",
+            extra={
+                "event_id": payment_event.event_id,
+                "event_type": (
+                    payment_event.event_type
+                ),
+                "order_id": payment.order_id,
+            },
         )
 
 
@@ -97,9 +117,11 @@ if __name__ == "__main__":
         settings.order_events_topic
     )
 
-    print(
-        "Payment Service listening "
-        "for order events..."
+    logger.info(
+        "Payment Service started",
+        extra={
+            "topic": settings.order_events_topic,
+        },
     )
 
     consumer.run(

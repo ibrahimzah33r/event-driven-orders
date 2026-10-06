@@ -5,26 +5,24 @@ from services.inventory_service.models import (
     OutboxMessage,
 )
 from shared.events.models import Event
-from shared.events.order_events import (
-    parse_order_created,
-)
+from shared.events.order_events import parse_order_created
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.dead_letter import DeadLetterPublisher
+from shared.logging_config import get_logger
+
+
+logger = get_logger("inventory-service")
 
 
 consumer = KafkaConsumer(
     group_id="inventory-service",
-    bootstrap_servers=(
-        settings.kafka_bootstrap_servers
-    ),
+    bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
 
 dead_letter = DeadLetterPublisher(
     topic="inventory-service.dlq",
-    bootstrap_servers=(
-        settings.kafka_bootstrap_servers
-    ),
+    bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
 
@@ -35,21 +33,31 @@ def handle_event(event: dict) -> None:
     order_event = parse_order_created(event)
     order_id = order_event.order_id
 
+    logger.info(
+        "Processing order.created",
+        extra={
+            "event_id": event["event_id"],
+            "event_type": event["event_type"],
+            "order_id": order_id,
+        },
+    )
+
     with SessionLocal() as db:
         existing_reservation = (
             db.query(InventoryReservation)
             .filter(
-                InventoryReservation.order_id
-                == order_id
+                InventoryReservation.order_id == order_id
             )
             .first()
         )
 
         if existing_reservation is not None:
-            print(
-                f"Duplicate order event ignored: "
-                f"inventory already reserved "
-                f"for order {order_id}"
+            logger.warning(
+                "Duplicate order event ignored",
+                extra={
+                    "event_id": event["event_id"],
+                    "order_id": order_id,
+                },
             )
             return
 
@@ -59,9 +67,6 @@ def handle_event(event: dict) -> None:
         )
 
         db.add(reservation)
-
-        # Send INSERT to PostgreSQL so reservation.id exists,
-        # but do NOT commit yet.
         db.flush()
 
         inventory_event = Event.create(
@@ -81,13 +86,15 @@ def handle_event(event: dict) -> None:
         )
 
         db.add(outbox_message)
-
-        # Reservation + event are committed together.
         db.commit()
 
-        print(
-            f"Inventory reserved for "
-            f"order {reservation.order_id}"
+        logger.info(
+            "Inventory reserved",
+            extra={
+                "event_id": inventory_event.event_id,
+                "event_type": inventory_event.event_type,
+                "order_id": reservation.order_id,
+            },
         )
 
 
@@ -96,9 +103,11 @@ if __name__ == "__main__":
         settings.order_events_topic
     )
 
-    print(
-        "Inventory Service listening "
-        "for order events..."
+    logger.info(
+        "Inventory Service started",
+        extra={
+            "topic": settings.order_events_topic,
+        },
     )
 
     consumer.run(

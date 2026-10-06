@@ -6,7 +6,6 @@ from fastapi import (
     HTTPException,
     status,
 )
-from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from services.order_service.db import get_db
@@ -19,7 +18,13 @@ from services.order_service.schemas import (
     OrderRead,
 )
 from shared.events.models import Event
-
+from sqlalchemy import text
+from confluent_kafka.admin import AdminClient
+from services.order_service.config import settings
+from services.order_service.db import (
+    SessionLocal,
+    get_db,
+)
 
 app = FastAPI(
     title="Order Service",
@@ -47,6 +52,65 @@ async def health(
     }
 
 
+@app.get("/health/live")
+async def health_live() -> dict:
+    return {
+        "status": "alive",
+        "service": "order-service",
+    }
+
+
+@app.get("/health/ready")
+async def health_ready() -> dict:
+    checks = {
+        "postgres": False,
+        "kafka": False,
+    }
+
+    errors = {}
+
+    # PostgreSQL
+    try:
+        async with SessionLocal() as db:
+            await db.execute(text("SELECT 1"))
+
+        checks["postgres"] = True
+
+    except Exception as exc:
+        errors["postgres"] = str(exc)
+
+    # Kafka
+    try:
+        admin = AdminClient(
+            {
+                "bootstrap.servers":
+                    settings.kafka_bootstrap_servers,
+            }
+        )
+
+        metadata = admin.list_topics(
+            timeout=3,
+        )
+
+        if metadata.brokers:
+            checks["kafka"] = True
+
+    except Exception as exc:
+        errors["kafka"] = str(exc)
+
+    ready = all(checks.values())
+
+    return {
+        "status": (
+            "ready"
+            if ready
+            else "not_ready"
+        ),
+        "service": "order-service",
+        "checks": checks,
+        "errors": errors,
+    }
+    
 @app.post(
     "/orders",
     response_model=OrderRead,

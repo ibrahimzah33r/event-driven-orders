@@ -7,27 +7,26 @@ from services.order_service.models import (
 from shared.events.models import Event
 from shared.kafka.consumer import KafkaConsumer
 from shared.kafka.dead_letter import DeadLetterPublisher
+from shared.logging_config import get_logger
+
+
+logger = get_logger("order-service-status")
 
 
 consumer = KafkaConsumer(
     group_id="order-service-status",
-    bootstrap_servers=(
-        settings.kafka_bootstrap_servers
-    ),
+    bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
 
 dead_letter = DeadLetterPublisher(
     topic="order-service-status.dlq",
-    bootstrap_servers=(
-        settings.kafka_bootstrap_servers
-    ),
+    bootstrap_servers=settings.kafka_bootstrap_servers,
 )
 
 
 def handle_event(event: dict) -> None:
     event_type = event["event_type"]
-    data = event["data"]
 
     if event_type not in {
         "payment.completed",
@@ -35,29 +34,39 @@ def handle_event(event: dict) -> None:
     }:
         return
 
+    data = event["data"]
     order_id = data["order_id"]
 
+    logger.info(
+        "Processing status event",
+        extra={
+            "event_id": event["event_id"],
+            "event_type": event_type,
+            "order_id": order_id,
+        },
+    )
+
     with SyncSessionLocal() as db:
-        order = db.get(
-            Order,
-            order_id,
-        )
+        order = db.get(Order, order_id)
 
         if order is None:
-            print(
-                f"Order {order_id} not found"
+            logger.warning(
+                "Order not found for event",
+                extra={
+                    "event_id": event["event_id"],
+                    "event_type": event_type,
+                    "order_id": order_id,
+                },
             )
             return
+
+        was_confirmed = order.status == "CONFIRMED"
 
         if event_type == "payment.completed":
             order.payment_status = "COMPLETED"
 
-        if event_type == "inventory.reserved":
+        elif event_type == "inventory.reserved":
             order.inventory_status = "RESERVED"
-
-        was_confirmed = (
-            order.status == "CONFIRMED"
-        )
 
         if (
             order.payment_status == "COMPLETED"
@@ -80,34 +89,44 @@ def handle_event(event: dict) -> None:
 
             outbox_message = OutboxMessage(
                 event_id=confirmed_event.event_id,
-                topic="notifications.events",
+                topic=settings.notification_events_topic,
                 event_key=str(order.id),
                 payload=confirmed_event.to_dict(),
             )
 
             db.add(outbox_message)
 
+            logger.info(
+                "Order confirmed",
+                extra={
+                    "event_id": confirmed_event.event_id,
+                    "event_type": confirmed_event.event_type,
+                    "order_id": order.id,
+                },
+            )
+
         db.commit()
 
-        print(
-            f"Order {order.id}: "
-            f"status={order.status}, "
-            f"payment={order.payment_status}, "
-            f"inventory={order.inventory_status}"
+        logger.info(
+            "Order status updated",
+            extra={
+                "event_id": event["event_id"],
+                "event_type": event_type,
+                "order_id": order.id,
+            },
         )
 
 
 if __name__ == "__main__":
     consumer.subscribe(
         [
-            "payments.events",
-            "inventory.events",
+            settings.payment_events_topic,
+            settings.inventory_events_topic,
         ]
     )
 
-    print(
-        "Order Service worker listening "
-        "for payment and inventory events..."
+    logger.info(
+        "Order status worker started"
     )
 
     consumer.run(

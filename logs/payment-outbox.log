@@ -8,3 +8,24 @@
 [payment-outbox] Outbox publisher started.
 [payment-outbox] Produced event to payments.events partition=0 offset=18
 [payment-outbox] Published outbox event 2fcf11b4-b1bf-4f28-9d25-e65a3a7b09b3 to payments.events
+[payment-outbox] Outbox publisher started.
+[payment-outbox] Produced event to payments.events partition=0 offset=19
+[payment-outbox] Published outbox event 687a6b14-ece2-49c0-ba30-046b33a2184e to payments.events
+[payment-outbox] Outbox publisher started.
+[payment-outbox] Produced event to payments.events partition=0 offset=20
+[payment-outbox] Published outbox event 2a39bb3a-0076-4de2-83c1-ef17f9120df5 to payments.events
+[payment-outbox] Outbox publisher started.
+[payment-outbox] Produced event to payments.events partition=0 offset=21
+[payment-outbox] Published outbox event a3f12e65-d276-438d-b48b-15985182a69f to payments.events
+[payment-outbox] {"timestamp": "2026-10-05T14:26:00.303837+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-05T14:26:27.377742+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Publishing outbox event", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19, "topic": "payments.events"}
+[payment-outbox] Produced event to payments.events partition=0 offset=22
+[payment-outbox] {"timestamp": "2026-10-05T14:26:27.404878+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox event published", "event_id": "77f0bc79-3789-4e03-ac4c-c1dcd9482b4f", "event_type": "payment.completed", "order_id": 19, "topic": "payments.events"}
+[payment-outbox] {"timestamp": "2026-10-05T14:32:06.878616+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-05T14:44:05.956106+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] {"timestamp": "2026-10-06T11:43:44.354995+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
+[payment-outbox] %6|1791287024.407|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 54ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791287024.573|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection closed by peer: receive 0 after POLLIN (after 0ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791287025.601|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 14ms in state APIVERSION_QUERY)
+[payment-outbox] %6|1791287029.159|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Disconnected: connection reset by peer (after 1ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+[payment-outbox] {"timestamp": "2026-10-06T11:49:45.969077+00:00", "level": "INFO", "service": "outbox-publisher", "message": "Outbox publisher started"}
